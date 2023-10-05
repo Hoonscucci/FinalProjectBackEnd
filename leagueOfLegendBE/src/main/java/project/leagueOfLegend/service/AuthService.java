@@ -34,15 +34,15 @@ public class AuthService {
         // email 중복 확인
         try {
             if(userRepository.existsById(userId))
-                return ResponseDto.setFailed("Existed Id");
+                return ResponseDto.setFailed("존재하는 아이디 입니다.");
         }catch (Exception e) {
-            return ResponseDto.setFailed("Data Bass Error!");
+            return ResponseDto.setFailed("다시 시도 해주세요");
         }
 
 
         // 비밀번호가 서로 다르면 failled response 반환
         if (!userPassword.equals(userPasswordCheck))
-            return ResponseDto.setFailed("Password does not matched");
+            return ResponseDto.setFailed("비밀번호가 일치하지 않습니다.");
 
         //UserEntity 생성
         User user = new User(dto);
@@ -62,11 +62,11 @@ public class AuthService {
             widgetOneRepository.save(widgetOne);
             widgetTwoRepository.save(widgetTwo);
         }catch (Exception e) {
-            return ResponseDto.setFailed("Data Base Error");
+            return ResponseDto.setFailed("다시 시도하세요");
         }
 
 
-        return ResponseDto.setSuccess("Sign Up Success!!", null);
+        return ResponseDto.setSuccess("회원가입 성공", null);
     }
     public ResponseDto<SignInResponseDto> signIn(SignInDto dto) {
         String userId = dto.getUserId();
@@ -78,12 +78,17 @@ public class AuthService {
         try {
              user = userRepository.findByUserId(userId);
              // 잘못된 아이디
-             if (user == null) return ResponseDto.setFailed("로그인 실패");
+            if (user == null ) {
+                return ResponseDto.setFailed("아이디를 확인하세요");
+            }
              // 잘못된 패스워드
-            if (!passwordEncoder.matches(userPassword, user.getUserPassword()))
-                return ResponseDto.setFailed("로그인 실패");
+
+            if (!passwordEncoder.matches(userPassword, user.getUserPassword())) {
+                    return ResponseDto.setFailed("비밀번호를 확인하세요");
+            }
+
             }catch (Exception Error) {
-            return ResponseDto.setFailed("Database Error");
+            return ResponseDto.setFailed("다시 시도하세요");
         }
 
         user.setUserPassword("");

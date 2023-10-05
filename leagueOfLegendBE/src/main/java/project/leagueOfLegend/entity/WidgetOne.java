@@ -63,14 +63,14 @@ public class WidgetOne {
             this.Aram_An = Aram_An;
         }
     }
-    public void setAram_Ti(boolean Aram_ti) {
-        if(Classic_An) {
+    public void setAram_Ti(boolean Aram_Ti) {
+        if(Aram_Ti) {
             this.Classic_An = false;
             this.Classic_Ti = false;
             this.Aram_An = false;
-            this.Aram_Ti = Aram_ti;
+            this.Aram_Ti = Aram_Ti;
         } else {
-            this.Aram_Ti = Aram_ti;
+            this.Aram_Ti = Aram_Ti;
         }
     }
 

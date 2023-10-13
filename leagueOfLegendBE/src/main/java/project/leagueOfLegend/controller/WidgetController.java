@@ -12,6 +12,7 @@ import project.leagueOfLegend.service.WidgetService;
 
 @RestController
 @RequestMapping("api/widget")
+@CrossOrigin(origins = "http://localhost:3000")
 public class WidgetController {
     @Autowired WidgetService widgetService;
 

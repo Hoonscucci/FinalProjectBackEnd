@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import project.leagueOfLegend.dto.*;
 import project.leagueOfLegend.entity.User;
 import project.leagueOfLegend.entity.WidgetOne;
@@ -14,6 +15,7 @@ import project.leagueOfLegend.repository.WidgetTwoRepository;
 import project.leagueOfLegend.security.TokenProvider;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AuthService {
 
@@ -27,8 +29,6 @@ public class AuthService {
     public ResponseDto<?> signUp(SignUpDto dto) {
         String userId = dto.getUserId();
         String userPassword = dto.getUserPassword();
-
-
         String userPasswordCheck = dto.getUserPasswordCheck();
 
         // email 중복 확인
@@ -59,6 +59,7 @@ public class AuthService {
             WidgetTwo widgetTwo = new WidgetTwo();
             widgetOne.setUser(u);
             widgetTwo.setUser(u);
+
             widgetOneRepository.save(widgetOne);
             widgetTwoRepository.save(widgetTwo);
         }catch (Exception e) {
@@ -91,7 +92,7 @@ public class AuthService {
             return ResponseDto.setFailed("다시 시도하세요");
         }
 
-        user.setUserPassword("");
+//        user.setUserPassword("");
 
         String token = tokenProvider.create(userId);
         int exprTime = 3600000;

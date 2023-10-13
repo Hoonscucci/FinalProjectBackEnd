@@ -37,8 +37,9 @@ public class WebSecurityConfig {
 //                .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests.requestMatchers("/","/api/auth/**")
 //                .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests.requestMatchers("/","/api/auth/**")
 //                        .permitAll().anyRequest().authenticated());
-                .authorizeRequests().antMatchers("/", "/api/auth/**","/api/widget/**").permitAll()
-                .anyRequest().authenticated();
+                .authorizeRequests().antMatchers("/", "/api/auth/**","/api/widget/**","/api/classic/**","/api/aram/**").permitAll()
+                .anyRequest().authenticated().and()
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 
                 // 나머지 Request에 대해서는 모두 인증된 사용자만 사용 가능하게 함

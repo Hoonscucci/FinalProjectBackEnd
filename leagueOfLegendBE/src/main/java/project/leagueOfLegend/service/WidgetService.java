@@ -22,6 +22,10 @@ public class WidgetService {
         String userId = dto.getUserId();
         String columnName = dto.getColumnName();
 
+
+//        User user = User.builder().userId(userId).build();
+
+
         User user = userRepository.findByUserId(userId);
         WidgetOne widgetOne = this.widgetOneRepository.findByUser(user);
 
@@ -51,6 +55,7 @@ public class WidgetService {
         String columnName = dto.getColumnName();
 
         User user = userRepository.findByUserId(userId);
+
         WidgetTwo widgetTwo = this.widgetTwoRepository.findByUser(user);
 
         switch (columnName) {

@@ -12,18 +12,19 @@ import project.leagueOfLegend.service.WidgetService;
 
 @RestController
 @RequestMapping("api/widget")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://52.79.230.210:3000")
+
 public class WidgetController {
     @Autowired WidgetService widgetService;
 
-    @PutMapping("/one")
+    @PostMapping("/one")
     public ResponseDto<WidgetResponseDto> updateColumnOne(@RequestBody WidgetOneDto requestBody)
     {
         ResponseDto<WidgetResponseDto> result =  widgetService.updateWidgetOne(requestBody);
         return result;
     }
 
-    @PutMapping("/two")
+    @PostMapping("/two")
     public ResponseDto<WidgetResponseDto> updateColumnTwo(@RequestBody WidgetTwoDto requestBody) {
         ResponseDto<WidgetResponseDto> result =  widgetService.updateWidgetTwo(requestBody);
         return result;

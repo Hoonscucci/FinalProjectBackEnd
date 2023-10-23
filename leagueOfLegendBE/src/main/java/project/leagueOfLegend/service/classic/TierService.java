@@ -30,6 +30,24 @@ public class TierService {
         String tier = dto.getTier();
         String team_position = dto.getTeam_position();
 
+        switch (team_position) {
+            case "탑":
+                team_position = "TOP";
+                break;
+            case "정글":
+                team_position = "JUNGLE";
+                break;
+            case "미드":
+                team_position = "MIDDLE";
+                break;
+            case "바텀":
+                team_position = "BOTTOM";
+                break;
+            case "서폿":
+                team_position = "UTILITY";
+                break;
+        }
+
         List list = new ArrayList<>();
 
         List<IronCham> Ironlist = new ArrayList<>();

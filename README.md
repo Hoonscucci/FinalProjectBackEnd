@@ -1,5 +1,7 @@
 # Team Project
 
+[팀 프로젝트 보러가기](https://github.com/SilverWithA/Final_project)
+
 ## League Of Legend 전적 검색 사이트 15.GG
 
 게임 데이터를 이용한 전적 검색 + BackEnd 개발(Spring Boot)
